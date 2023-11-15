@@ -1,0 +1,21 @@
+<div
+  class="node"
+  *ngFor="let node of row"
+  [id]="'node-' + node.row + '-' + node.col"
+  [ngClass]="{
+    'visited-node': node.isVisited,
+    'watch-visited-node': node.isVisitedDirectly,
+    path: node.isPath,
+    'watch-path': node.isPathDirectly,
+    'start-node': node.isStart,
+    'end-node': node.isEnd,
+    'node-wall': node.isWall,
+    'node-maze': node.isMaze
+  }"
+  draggable="true"
+  (dragstart)="dragStart($event)"
+  (dragenter)="dragEnter($event)"
+  (dragleave)="dragLeave($event)"
+  (dragover)="dragOver($event)"
+  (drop)="dragDrop($event)"
+></div>

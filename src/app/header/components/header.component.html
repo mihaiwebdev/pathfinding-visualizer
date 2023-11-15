@@ -1,0 +1,104 @@
+<div class="header">
+  <div class="navbar">
+    <h1 class="title">Pathfinding Visualizer</h1>
+
+    <div class="actions">
+      <button
+        (click)="createMaze()"
+        class="nav-btn"
+        [disabled]="this.visualizeAlgoService.disableBtn()"
+      >
+        Create Maze
+      </button>
+
+      <div class="select-container">
+        <select
+          class="select-tag"
+          name="algo"
+          id="algo"
+          [(ngModel)]="selectedAlgo"
+        >
+          <option disabled="true" hidden selected="true" [ngValue]="null">
+            Select Algo
+          </option>
+
+          <option [ngValue]="algoEnum.DIJKSTRA">Dijkstra's</option>
+          <option [ngValue]="algoEnum.ASTAR">A*</option>
+        </select>
+      </div>
+
+      <button
+        (click)="findPath()"
+        class="start-btn"
+        [disabled]="this.visualizeAlgoService.disableBtn() || !selectedAlgo"
+      >
+        Watch {{ selectedAlgo | titlecase }}
+      </button>
+
+      <button
+        (click)="clearBoard()"
+        class="nav-btn"
+        [disabled]="this.visualizeAlgoService.disableBtn()"
+      >
+        Clear Board
+      </button>
+
+      <div class="select-container">
+        <select
+          class="select-tag"
+          name="algoSpeed"
+          id="algoSpeed"
+          [(ngModel)]="selectAlgoSpeed"
+          (change)="changeSpeed()"
+        >
+          <option disabled="true" hidden selected="true" [ngValue]="null">
+            Change Speed
+          </option>
+          <option [ngValue]="0.5">x0.5</option>
+          <option [ngValue]="1">x1</option>
+          <option [ngValue]="1.5">x1.5</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="item-group">
+      <img
+        src="../../../assets/arrow.svg"
+        alt="arrow"
+        class="item-icon arrow"
+      />
+
+      <p class="item-info">Start Node</p>
+    </div>
+
+    <div class="item-group">
+      <img
+        src="../../../assets/location-dot.svg"
+        alt="arrow"
+        class="item-icon"
+      />
+
+      <p class="item-info">Target Node</p>
+    </div>
+
+    <div class="item-group">
+      <div class="item-icon unvisited-node"></div>
+
+      <p class="item-info">Unvisited Node</p>
+    </div>
+
+    <div class="item-group">
+      <div class="item-icon visited-node-2"></div>
+
+      <p class="item-info">Visited Nodes</p>
+    </div>
+
+    <div class="item-group">
+      <div class="item-icon shortest-path"></div>
+
+      <p class="item-info">Shortest Path Node</p>
+    </div>
+  </div>
+</div>
